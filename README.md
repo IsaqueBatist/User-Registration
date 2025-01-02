@@ -26,6 +26,7 @@ Welcome to the **User Registration** project! This project is based on the "Apre
 ---
 
 ## User Interactions and Behavior
+
 - Entering the zip code:
   - All inputs related to the address will be filled automatically.
 - Submitting the form:
@@ -39,6 +40,7 @@ Welcome to the **User Registration** project! This project is based on the "Apre
 ---
 
 ## Technologies Used
+
 - **React**: Front-end framework for building user interfaces.
 - **TypeScript**: Typed superset of JavaScript for improved code quality and maintainability.
 - **CSS**: Styles for creating an appealing user interface.
@@ -52,21 +54,21 @@ Welcome to the **User Registration** project! This project is based on the "Apre
 ## Setup Instructions
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/IsaqueBatist/User-Registration.git
-    ```
+   ```bash
+   git clone https://github.com/IsaqueBatist/User-Registration.git
+   ```
 2. Navigate to the project directory:
-    ```bash
-    cd user-registration
-    ```
+   ```bash
+   cd user-registration
+   ```
 3. Install dependencies:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 4. Run the development server:
-    ```bash
-    npm start
-    ```
+   ```bash
+   npm start
+   ```
 
 The application will be available at `http://localhost:3000/`.
 
