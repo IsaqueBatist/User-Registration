@@ -1,9 +1,8 @@
 import React from 'react';
+import Home from './pages/home-page/Home.tsx';
 
 function App() {
-  return (
-    <div className="App"></div>
-  );
+  return <Home />;
 }
 
 export default App;

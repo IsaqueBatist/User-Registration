@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.home-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #0c1a26, #048c7f 90%);
+}
