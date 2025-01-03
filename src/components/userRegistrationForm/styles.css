@@ -16,6 +16,11 @@
   }
 }
 
+.error{
+  color: red;
+  margin: 0 0 0 1rem;
+}
+
 .input-controler{
   padding: .5rem;
   margin: 1rem;
@@ -47,8 +52,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   width: 100%;
   color: white;
+
+  button{
+    align-self: center;
+    background-color: #048C7F;
+    padding: 1rem 2rem;
+    width: 50%;
+    border: none;
+    color: white;
+    border-radius: 1rem;
+    justify-self: center;
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }

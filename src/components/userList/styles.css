@@ -17,6 +17,7 @@
 .list-users{
   width: 100%;
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 1rem;
