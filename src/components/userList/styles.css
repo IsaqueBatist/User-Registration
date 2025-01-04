@@ -25,7 +25,7 @@
   justify-content: center;
 }
 
-.filter{
+.filter {
   width: 100%;
   display: flex;
   justify-content: start;
@@ -74,14 +74,14 @@ td:nth-child(5) {
   border-right: 1px solid #333;
 }
 
-.page-control{
+.page-control {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  img{
+  img {
     width: 40px;
     height: 40px;
-    &:hover{
+    &:hover {
       transform: scale(1.2);
       cursor: pointer;
     }

@@ -8,6 +8,9 @@ import { DevTool } from '@hookform/devtools';
 import { getAdress } from '../../services/viaCep.ts';
 import { FormValue } from '../../types/form.ts';
 import { getAllUsers } from '../../services/user.ts';
+import { addNewUser } from '../../services/userService.ts';
+
+let renderCounter = 0;
 
 const schema = z.object({
   name: z.string().nonempty('Name is required'),
@@ -28,7 +31,7 @@ const schema = z.object({
     (value) => (typeof value === 'string' ? value.replace('-', '') : value),
     z.string().regex(/^\d{8}$/, 'ZIP Code should contain 8 digits')
   ),
-  adress: z.object({
+  address: z.object({
     street: z.string().nonempty('Street is required'),
     city: z.string().nonempty('City is required'),
     state: z.string().nonempty('State is required'),
@@ -43,44 +46,53 @@ const UserRegistrationForm = () => {
   const {
     register,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
-    setValue,
     clearErrors,
+    setValue,
   } = useForm<FormValue>({
     mode: 'onBlur',
     resolver: zodResolver(schema),
   });
   const onSubmit = (formData: FormValue) => {
-    console.log(formData);
+    if (isValid) {
+      addNewUser(formData);
+      reset();
+    }
   };
 
   const handleCEPBlur = async (zipCode: string) => {
-    try {
-      const adress = await getAdress(zipCode);
-      if (adress) {
-        setValue('adress.street', adress.logradouro);
-        clearErrors('adress.street');
+    if (zipCode.length === 8) {
+      try {
+        const address = await getAdress(zipCode);
+        if (address) {
+          setValue('address.street', address.logradouro);
+          clearErrors('address.street');
 
-        setValue('adress.city', adress.localidade);
-        clearErrors('adress.city');
+          setValue('address.city', address.localidade);
+          clearErrors('address.city');
 
-        setValue('adress.state', adress.estado);
-        clearErrors('adress.state');
+          setValue('address.state', address.estado);
+          clearErrors('address.state');
 
-        setValue('adress.country', 'Brazil');
-        clearErrors('adress.country');
-        SetIsCepValid(true);
+          setValue('address.country', 'Brazil');
+          clearErrors('address.country');
+
+          SetIsCepValid(true);
+        }
+      } catch (error) {
+        SetIsCepValid(false);
+        console.error('Failed to fetch address:', error);
       }
-    } catch (error) {
+    } else {
       SetIsCepValid(false);
-      console.error('Failed to fetch address:', error);
     }
   };
+  renderCounter++;
   return (
     <div className="main-container">
-      <h2>Register User</h2>
+      <h2>Register User, render: {renderCounter / 2}</h2>
       <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <div className="input-controler">
@@ -125,12 +137,12 @@ const UserRegistrationForm = () => {
           <div className="input-controler">
             <input
               type="text"
-              disabled={isCepvalid}
-              {...register('adress.street')}
+              disabled
+              {...register('address.street')}
               placeholder="Street"
             />
-            {errors.adress?.street && (
-              <p className="error">{errors.adress?.street.message}</p>
+            {errors.address?.street && (
+              <p className="error">{errors.address?.street.message}</p>
             )}
           </div>
         </div>
@@ -139,22 +151,22 @@ const UserRegistrationForm = () => {
           <div className="input-controler">
             <input
               type="text"
-              disabled={isCepvalid}
-              {...register('adress.country')}
+              disabled
+              {...register('address.country')}
               placeholder="Country"
             />
-            {errors.adress?.country && (
-              <p className="error">{errors.adress?.country.message}</p>
+            {errors.address?.country && (
+              <p className="error">{errors.address?.country.message}</p>
             )}
           </div>
           <div className="input-controler">
             <input
               type="text"
-              {...register('adress.postalCode')}
+              {...register('address.postalCode')}
               placeholder="Postal Code"
             />
-            {errors.adress?.postalCode && (
-              <p className="error">{errors.adress?.postalCode.message}</p>
+            {errors.address?.postalCode && (
+              <p className="error">{errors.address?.postalCode.message}</p>
             )}
           </div>
         </div>
@@ -163,28 +175,28 @@ const UserRegistrationForm = () => {
           <div className="input-controler">
             <input
               type="text"
-              disabled={isCepvalid}
-              {...register('adress.city')}
+              disabled
+              {...register('address.city')}
               placeholder="City"
             />
-            {errors.adress?.city && (
-              <p className="error">{errors.adress?.city.message}</p>
+            {errors.address?.city && (
+              <p className="error">{errors.address?.city.message}</p>
             )}
           </div>
 
           <div className="input-controler">
             <input
               type="text"
-              disabled={isCepvalid}
-              {...register('adress.state')}
+              disabled
+              {...register('address.state')}
               placeholder="State"
             />
-            {errors.adress?.state && (
-              <p className="error">{errors.adress?.state.message}</p>
+            {errors.address?.state && (
+              <p className="error">{errors.address?.state.message}</p>
             )}
           </div>
         </div>
-        <button>Register</button>
+        <button type="submit">Register</button>
       </form>
       <DevTool control={control} />
     </div>

@@ -9,8 +9,16 @@ export const getAllUsers = async (page: number): Promise<UserType[]> => {
   return data;
 };
 
-export const getUserByName = async (name: string, page: number): Promise<UserType[]> => {
-  const url = `${baseURL}/users?name_like=${name}&_page=${page}&_sort=name&_limit=5`
-  const data = await axios.get(url).then((res) => res.data)
-  return data
-}
+export const getUserByName = async (
+  name: string,
+  page: number
+): Promise<UserType[]> => {
+  const url = `${baseURL}/users?name_like=${name}&_page=${page}&_sort=name&_limit=5`;
+  const data = await axios.get(url).then((res) => res.data);
+  return data;
+};
+
+export const addNewUser = async (user: UserType) => {
+  const url = `${baseURL}/users`;
+  return axios.post(url, user);
+};

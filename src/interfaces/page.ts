@@ -1,8 +1,8 @@
-import { UserType } from "../types/user";
+import { UserType } from '../types/user';
 
-export interface Page{
-  content: UserType[],
-  length: number,
-  page: number
-  nextPage: boolean
+export interface Page {
+  content: UserType[];
+  length: number;
+  page: number;
+  nextPage: boolean;
 }

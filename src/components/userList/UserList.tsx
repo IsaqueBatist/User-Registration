@@ -2,52 +2,52 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { getAllUsers, getUserByName } from '../../services/userService.ts';
 import { Adress } from '../../types/user.ts';
-import RightArrow from "../../assets/svg/arrow-right-short.svg"
-import LefttArrow from "../../assets/svg/arrow-left-short.svg"
+import RightArrow from '../../assets/svg/arrow-right-short.svg';
+import LefttArrow from '../../assets/svg/arrow-left-short.svg';
 import { Page } from '../../interfaces/page.ts';
 
 const UserList = () => {
-  const [userPage, setUserPage] = useState<Page>({} as Page)
-  const [page, setPage] = useState<number>(1)
+  const [userPage, setUserPage] = useState<Page>({} as Page);
+  const [page, setPage] = useState<number>(1);
 
   const getData = async (page: number) => {
     const data = await getAllUsers(page);
-    if(data.length === 0) {
+    if (data.length === 0) {
       return setUserPage({
         ...userPage,
-        nextPage: false
-      })
+        nextPage: false,
+      });
     }
     setUserPage({
       ...userPage,
       content: data,
       length: data.length,
       page: page,
-      nextPage: true
+      nextPage: true,
     });
   };
-  const handleNextPage = async () =>{
-    await getData(page+1)
-    setPage((prevState) => prevState+1)
-    console.log(`nextpage: ${page}`)
-  }
+  const handleNextPage = async () => {
+    await getData(page + 1);
+    setPage((prevState) => prevState + 1);
+    console.log(`nextpage: ${page}`);
+  };
 
   const handlePreviusPage = async () => {
-    await getData(page-1)
-    setPage((prevState) => prevState-1)
-    console.log(`previus page: ${page}`)
-  }
+    await getData(page - 1);
+    setPage((prevState) => prevState - 1);
+    console.log(`previus page: ${page}`);
+  };
 
-  const handleSearchUser = async (name:string) => {
-    if(name.length >= 2 || name.length === 0){
-      const data = await getUserByName(name, 1)
-      setPage(1)
+  const handleSearchUser = async (name: string) => {
+    if (name.length >= 2 || name.length === 0) {
+      const data = await getUserByName(name, 1);
+      setPage(1);
       setUserPage({
         ...userPage,
-        content: data
-      })
+        content: data,
+      });
     }
-  }
+  };
 
   const formatDate = (date: Date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -70,7 +70,11 @@ const UserList = () => {
       <h2>List of Users</h2>
       <div className="list-users">
         <div className="filter">
-          <input type="text" placeholder='Search User' onChange={(e) => handleSearchUser(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Search User"
+            onChange={(e) => handleSearchUser(e.target.value)}
+          />
         </div>
         <table>
           <thead>
@@ -98,8 +102,18 @@ const UserList = () => {
           </tbody>
         </table>
         <div className="page-control">
-          { userPage.page > 1 ? <img src={LefttArrow} onClick={handlePreviusPage} alt="previusPage" /> : <div></div>}
-          { userPage.nextPage && <img src={RightArrow} onClick={handleNextPage} alt="nextPage" />}
+          {userPage.page > 1 ? (
+            <img
+              src={LefttArrow}
+              onClick={handlePreviusPage}
+              alt="previusPage"
+            />
+          ) : (
+            <div></div>
+          )}
+          {userPage.nextPage && (
+            <img src={RightArrow} onClick={handleNextPage} alt="nextPage" />
+          )}
         </div>
       </div>
     </div>

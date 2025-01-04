@@ -5,5 +5,5 @@ export type FormValue = {
   email: string;
   dof: Date;
   zipCode: string;
-  adress: Adress;
+  address: Adress;
 };
