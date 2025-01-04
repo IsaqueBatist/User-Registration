@@ -27,3 +27,8 @@ export const updateUser = async (user: UserType, userid: number) => {
   const url = `${baseURL}/users/${userid}`
   return axios.put(url, user)
 }
+
+export const deleteUser = async (userId: number) => {
+  const url = `${baseURL}/users/${userId}`
+  return axios.delete(url)
+}

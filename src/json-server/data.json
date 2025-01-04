@@ -43,20 +43,6 @@
       }
     },
     {
-      "id": 4,
-      "name": "Ana",
-      "email": "ana.costa@example.com",
-      "dof": "1987-06-10T00:00:00.000Z",
-      "zipCode": "01301-000",
-      "address": {
-        "street": "Rua da Consolação",
-        "city": "São Paulo",
-        "state": "SP",
-        "postalCode": "",
-        "country": "Brazil"
-      }
-    },
-    {
       "id": 5,
       "name": "Felipe Pereira",
       "email": "felipe.pereira@example.com",
@@ -131,12 +117,12 @@
       "name": "Carla Lima",
       "email": "carla.lima@example.com",
       "dof": "1988-08-30T00:00:00.000Z",
-      "zipCode": "69050-440",
+      "zipCode": "69050440",
       "address": {
         "street": "Rua das Palmeiras",
         "city": "Manaus",
         "state": "AM",
-        "postalCode": "69050-440",
+        "postalCode": "12",
         "country": "Brazil"
       }
     },
@@ -165,20 +151,6 @@
         "city": "Belém",
         "state": "PA",
         "postalCode": "66060-210",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 13,
-      "name": "Bruno Oliveira",
-      "email": "bruno.oliveira@example.com",
-      "dof": "1990-01-01T00:00:00.000Z",
-      "zipCode": "13311215",
-      "address": {
-        "street": "Rua Doutor Manoel Maria Bueno",
-        "city": "Itu",
-        "state": "São Paulo",
-        "postalCode": "178",
         "country": "Brazil"
       }
     },

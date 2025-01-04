@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
-import { getAllUsers, getUserByName } from '../../services/userService.ts';
+import { deleteUser, getAllUsers, getUserByName } from '../../services/userService.ts';
 import { Adress, UserType } from '../../types/user.ts';
 import RightArrow from '../../assets/svg/arrow-right-short.svg';
 import LefttArrow from '../../assets/svg/arrow-left-short.svg';
@@ -66,13 +66,18 @@ const UserList = ({onUserSelect}: UserListProps) => {
   const formatAddress = (address: Adress) => {
     return `${address.street}, ${address.country}`;
   };
-
+  //TODO: Need to re-render the UserList Component
   const handleEditUser = (userData: UserType): void => {
     onUserSelect(userData)
   }
 
   const handleDeleteUser = (userId: number) => {
-
+    try{
+      deleteUser(userId)
+      getData(page)
+    }catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -114,7 +119,7 @@ const UserList = ({onUserSelect}: UserListProps) => {
                   <td>{user.zipCode}</td>
                   <td>
                     <img className='edit-button' src={editIcon} onClick={() => handleEditUser(user)} alt="editButton" />
-                    <img className='remove-button' src={removeIcon} alt="removeButton" />
+                    <img className='remove-button' src={removeIcon} onClick={() => handleDeleteUser(user.id || 0)} alt="removeButton" />
                   </td>
                 </tr>
               ))}
