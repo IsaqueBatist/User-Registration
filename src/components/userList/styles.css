@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 60%;
   h2 {
     font-size: 2.5rem;
     color: white;
@@ -86,4 +86,16 @@ td:nth-child(5) {
       cursor: pointer;
     }
   }
+}
+
+.edit-button{
+  background-color: #048C7F;
+  padding: .3rem;
+  border-radius: .5rem;
+}
+.remove-button{
+  background-color: #8c0b04;
+  margin-left: .3rem;
+  padding: .3rem;
+  border-radius: .5rem;
 }

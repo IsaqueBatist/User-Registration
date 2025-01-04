@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { getAllUsers, getUserByName } from '../../services/userService.ts';
-import { Adress } from '../../types/user.ts';
+import { Adress, UserType } from '../../types/user.ts';
 import RightArrow from '../../assets/svg/arrow-right-short.svg';
 import LefttArrow from '../../assets/svg/arrow-left-short.svg';
 import { Page } from '../../interfaces/page.ts';
+import removeIcon from "../../assets/svg/remove.svg"
+import editIcon from "../../assets/svg/edit.svg"
 
-const UserList = () => {
+interface UserListProps {
+  onUserSelect: (user: UserType) => void,
+}
+
+const UserList = ({onUserSelect}: UserListProps) => {
   const [userPage, setUserPage] = useState<Page>({} as Page);
   const [page, setPage] = useState<number>(1);
 
@@ -61,6 +67,14 @@ const UserList = () => {
     return `${address.street}, ${address.country}`;
   };
 
+  const handleEditUser = (userData: UserType): void => {
+    onUserSelect(userData)
+  }
+
+  const handleDeleteUser = (userId: number) => {
+
+  }
+
   useEffect(() => {
     getData(page);
   }, []);
@@ -85,6 +99,7 @@ const UserList = () => {
               <th scope="col">Date of Birth</th>
               <th scope="col">Address</th>
               <th scope="col">Zipcode</th>
+              <th scope='col'>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -96,7 +111,11 @@ const UserList = () => {
                   <td>{user.email}</td>
                   <td>{formatDate(new Date(user.dof))}</td>
                   <td>{formatAddress(user.address)}</td>
-                  <td>{user.address.postalCode}</td>
+                  <td>{user.zipCode}</td>
+                  <td>
+                    <img className='edit-button' src={editIcon} onClick={() => handleEditUser(user)} alt="editButton" />
+                    <img className='remove-button' src={removeIcon} alt="removeButton" />
+                  </td>
                 </tr>
               ))}
           </tbody>

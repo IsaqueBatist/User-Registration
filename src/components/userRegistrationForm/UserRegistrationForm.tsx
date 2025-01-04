@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './styles.css';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -7,12 +7,13 @@ import * as z from 'zod';
 import { DevTool } from '@hookform/devtools';
 import { getAdress } from '../../services/viaCep.ts';
 import { FormValue } from '../../types/form.ts';
-import { getAllUsers } from '../../services/user.ts';
-import { addNewUser } from '../../services/userService.ts';
+import { addNewUser, updateUser } from '../../services/userService.ts';
+import { UserType } from '../../types/user.ts';
 
 let renderCounter = 0;
 
 const schema = z.object({
+  id: z.number().optional(),
   name: z.string().nonempty('Name is required'),
   email: z.string().email('Email format not valid'),
   dof: z.preprocess(
@@ -39,10 +40,12 @@ const schema = z.object({
     country: z.string().nonempty('Country is required'),
   }),
 });
+interface props{
+  user: UserType
+  setSelectedUser: React.Dispatch<React.SetStateAction<UserType>>
+}
 
-const UserRegistrationForm = () => {
-  const [isCepvalid, SetIsCepValid] = useState(false);
-
+const UserRegistrationForm = ({user, setSelectedUser}: props ) => {
   const {
     register,
     control,
@@ -55,8 +58,10 @@ const UserRegistrationForm = () => {
     mode: 'onBlur',
     resolver: zodResolver(schema),
   });
-  const onSubmit = (formData: FormValue) => {
-    if (isValid) {
+  const onSubmit = (formData: UserType) => {
+    if (isValid && user.name) {
+      updateUser(formData, formData.id || 0)
+    }else {
       addNewUser(formData);
       reset();
     }
@@ -78,18 +83,37 @@ const UserRegistrationForm = () => {
 
           setValue('address.country', 'Brazil');
           clearErrors('address.country');
-
-          SetIsCepValid(true);
         }
       } catch (error) {
-        SetIsCepValid(false);
         console.error('Failed to fetch address:', error);
       }
-    } else {
-      SetIsCepValid(false);
     }
   };
   renderCounter++;
+
+  const handleResetForm = () => {
+    reset({
+      id: undefined,
+      name: '',
+      dof: new Date(),
+      email: '',
+      zipCode: '',
+      address: {
+        city: '',
+        country: '',
+        postalCode: '',
+        state: '',
+        street: ''
+      }
+    })
+    setSelectedUser({} as UserType)
+  }
+
+  useEffect(() => {
+    if(user){
+      reset(user)
+    }
+  }, [user])
   return (
     <div className="main-container">
       <h2>Register User, render: {renderCounter / 2}</h2>
@@ -196,7 +220,10 @@ const UserRegistrationForm = () => {
             )}
           </div>
         </div>
-        <button type="submit">Register</button>
+        <div className="form-control">
+          <button type="submit">{user.name ? 'Save' : 'Registre'}</button>
+          <button type="button" onClick={handleResetForm}>Clean</button>
+        </div>
       </form>
       <DevTool control={control} />
     </div>

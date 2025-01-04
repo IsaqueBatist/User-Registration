@@ -22,3 +22,8 @@ export const addNewUser = async (user: UserType) => {
   const url = `${baseURL}/users`;
   return axios.post(url, user);
 };
+
+export const updateUser = async (user: UserType, userid: number) => {
+  const url = `${baseURL}/users/${userid}`
+  return axios.put(url, user)
+}

@@ -5,6 +5,7 @@
       "name": "João Silva",
       "email": "joao.silva@example.com",
       "dof": "1990-03-25T00:00:00.000Z",
+      "zipCode": "01311-000",
       "address": {
         "street": "Avenida Paulista",
         "city": "São Paulo",
@@ -18,6 +19,7 @@
       "name": "Maria Oliveira",
       "email": "maria.oliveira@example.com",
       "dof": "1985-07-15T00:00:00.000Z",
+      "zipCode": "20040-030",
       "address": {
         "street": "Rua do Ouvidor",
         "city": "Rio de Janeiro",
@@ -31,6 +33,7 @@
       "name": "Carlos Souza",
       "email": "carlos.souza@example.com",
       "dof": "1992-12-03T00:00:00.000Z",
+      "zipCode": "30330-560",
       "address": {
         "street": "Rua dos Três Irmãos",
         "city": "Belo Horizonte",
@@ -41,14 +44,15 @@
     },
     {
       "id": 4,
-      "name": "Ana Costa",
+      "name": "Ana",
       "email": "ana.costa@example.com",
       "dof": "1987-06-10T00:00:00.000Z",
+      "zipCode": "01301-000",
       "address": {
         "street": "Rua da Consolação",
         "city": "São Paulo",
         "state": "SP",
-        "postalCode": "01301-000",
+        "postalCode": "",
         "country": "Brazil"
       }
     },
@@ -57,6 +61,7 @@
       "name": "Felipe Pereira",
       "email": "felipe.pereira@example.com",
       "dof": "1995-04-25T00:00:00.000Z",
+      "zipCode": "60160-130",
       "address": {
         "street": "Avenida Beira Mar",
         "city": "Fortaleza",
@@ -70,6 +75,7 @@
       "name": "Luciana Alves",
       "email": "luciana.alves@example.com",
       "dof": "1993-02-18T00:00:00.000Z",
+      "zipCode": "80010-300",
       "address": {
         "street": "Rua XV de Novembro",
         "city": "Curitiba",
@@ -83,6 +89,7 @@
       "name": "Rodrigo Silva",
       "email": "rodrigo.silva@example.com",
       "dof": "1989-11-21T00:00:00.000Z",
+      "zipCode": "90000-000",
       "address": {
         "street": "Avenida Ipiranga",
         "city": "Porto Alegre",
@@ -96,6 +103,7 @@
       "name": "Tatiane Souza",
       "email": "tatiane.souza@example.com",
       "dof": "1994-09-05T00:00:00.000Z",
+      "zipCode": "22240-003",
       "address": {
         "street": "Rua das Laranjeiras",
         "city": "Rio de Janeiro",
@@ -109,6 +117,7 @@
       "name": "Eduardo Santos",
       "email": "eduardo.santos@example.com",
       "dof": "1991-01-13T00:00:00.000Z",
+      "zipCode": "70660-350",
       "address": {
         "street": "Avenida W3 Norte",
         "city": "Brasília",
@@ -122,6 +131,7 @@
       "name": "Carla Lima",
       "email": "carla.lima@example.com",
       "dof": "1988-08-30T00:00:00.000Z",
+      "zipCode": "69050-440",
       "address": {
         "street": "Rua das Palmeiras",
         "city": "Manaus",
@@ -135,6 +145,7 @@
       "name": "Vinícius Rocha",
       "email": "vinicius.rocha@example.com",
       "dof": "1997-10-22T00:00:00.000Z",
+      "zipCode": "79002-140",
       "address": {
         "street": "Rua Joaquim Murtinho",
         "city": "Campo Grande",
@@ -148,6 +159,7 @@
       "name": "Patrícia Martins",
       "email": "patricia.martins@example.com",
       "dof": "1984-12-14T00:00:00.000Z",
+      "zipCode": "66060-210",
       "address": {
         "street": "Rua Djalma Batista",
         "city": "Belém",
@@ -161,11 +173,12 @@
       "name": "Bruno Oliveira",
       "email": "bruno.oliveira@example.com",
       "dof": "1990-01-01T00:00:00.000Z",
+      "zipCode": "13311215",
       "address": {
-        "street": "Rua São Vicente",
-        "city": "Vitória",
-        "state": "ES",
-        "postalCode": "29050-001",
+        "street": "Rua Doutor Manoel Maria Bueno",
+        "city": "Itu",
+        "state": "São Paulo",
+        "postalCode": "178",
         "country": "Brazil"
       }
     },
@@ -174,6 +187,7 @@
       "name": "Júlia Pires",
       "email": "julia.pires@example.com",
       "dof": "1995-06-16T00:00:00.000Z",
+      "zipCode": "01222-010",
       "address": {
         "street": "Rua Maria Antônia",
         "city": "São Paulo",
@@ -187,6 +201,7 @@
       "name": "Marcos Lima",
       "email": "marcos.lima@example.com",
       "dof": "1992-03-11T00:00:00.000Z",
+      "zipCode": "50060-050",
       "address": {
         "street": "Rua Dona Elvira",
         "city": "Recife",
@@ -200,6 +215,7 @@
       "name": "Cláudia Torres",
       "email": "claudia.torres@example.com",
       "dof": "1993-08-29T00:00:00.000Z",
+      "zipCode": "95020-420",
       "address": {
         "street": "Rua Carlos Gomes",
         "city": "Caxias do Sul",
@@ -213,6 +229,7 @@
       "name": "Gustavo Ribeiro",
       "email": "gustavo.ribeiro@example.com",
       "dof": "1987-09-18T00:00:00.000Z",
+      "zipCode": "09720-000",
       "address": {
         "street": "Rua Paraguassu",
         "city": "São Bernardo do Campo",
@@ -226,6 +243,7 @@
       "name": "Fernanda Silva",
       "email": "fernanda.silva@example.com",
       "dof": "1991-05-20T00:00:00.000Z",
+      "zipCode": "26030-000",
       "address": {
         "street": "Rua 15 de Novembro",
         "city": "São João de Meriti",
@@ -239,6 +257,7 @@
       "name": "Ricardo Souza",
       "email": "ricardo.souza@example.com",
       "dof": "1994-07-12T00:00:00.000Z",
+      "zipCode": "88015-120",
       "address": {
         "street": "Rua Benjamin Constant",
         "city": "Florianópolis",
@@ -252,6 +271,7 @@
       "name": "Lívia Costa",
       "email": "livia.costa@example.com",
       "dof": "1996-01-07T00:00:00.000Z",
+      "zipCode": "68900-250",
       "address": {
         "street": "Rua Jaceguai",
         "city": "Macapá",
@@ -261,7 +281,8 @@
       }
     },
     {
-      "name": "isaque",
+      "id": 21,
+      "name": "isaqueBBBB",
       "email": "isaque@gmail.com",
       "dof": "2025-01-10T00:00:00.000Z",
       "zipCode": "13311215",
@@ -271,22 +292,35 @@
         "state": "São Paulo",
         "postalCode": "",
         "country": "Brazil"
-      },
-      "id": 21
+      }
     },
     {
+      "id": 22,
       "name": "isaque",
       "email": "isaque@gmail.com",
       "dof": "2025-01-10T00:00:00.000Z",
-      "zipCode": "13311215",
+      "zipCode": "13311-215",
       "address": {
         "street": "Rua Doutor Manoel Maria Bueno",
         "city": "Itu",
         "state": "São Paulo",
         "postalCode": "",
         "country": "Brazil"
+      }
+    },
+    {
+      "name": "IBB",
+      "email": "isaq@gmail.com",
+      "dof": "2025-01-03T00:00:00.000Z",
+      "zipCode": "13311215",
+      "address": {
+        "street": "Rua Doutor Manoel Maria Bueno",
+        "city": "Itu",
+        "state": "São Paulo",
+        "postalCode": "178",
+        "country": "Brazil"
       },
-      "id": 22
+      "id": 23
     }
   ]
 }
