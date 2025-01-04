@@ -1,16 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
-import { getAllUsers } from '../../services/user.ts';
-import { Adress, UserType } from '../../types/user.ts';
+import { getAllUsers, getUserByName } from '../../services/userService.ts';
+import { Adress } from '../../types/user.ts';
+import RightArrow from "../../assets/svg/arrow-right-short.svg"
+import LefttArrow from "../../assets/svg/arrow-left-short.svg"
+import { Page } from '../../interfaces/page.ts';
 
 const UserList = () => {
-  const [users, setUsers] = useState<UserType[]>([]);
+  const [userPage, setUserPage] = useState<Page>({} as Page)
+  const [page, setPage] = useState<number>(1)
 
   const getData = async (page: number) => {
     const data = await getAllUsers(page);
-    console.log(data);
-    setUsers(data);
+    if(data.length === 0) {
+      return setUserPage({
+        ...userPage,
+        nextPage: false
+      })
+    }
+    setUserPage({
+      ...userPage,
+      content: data,
+      length: data.length,
+      page: page,
+      nextPage: true
+    });
   };
+  const handleNextPage = async () =>{
+    await getData(page+1)
+    setPage((prevState) => prevState+1)
+    console.log(`nextpage: ${page}`)
+  }
+
+  const handlePreviusPage = async () => {
+    await getData(page-1)
+    setPage((prevState) => prevState-1)
+    console.log(`previus page: ${page}`)
+  }
+
+  const handleSearchUser = async (name:string) => {
+    if(name.length >= 2 || name.length === 0){
+      const data = await getUserByName(name, 1)
+      setPage(1)
+      setUserPage({
+        ...userPage,
+        content: data
+      })
+    }
+  }
 
   const formatDate = (date: Date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -25,13 +62,16 @@ const UserList = () => {
   };
 
   useEffect(() => {
-    getData(1);
+    getData(page);
   }, []);
 
   return (
     <div className="userlist-container">
       <h2>List of Users</h2>
       <div className="list-users">
+        <div className="filter">
+          <input type="text" placeholder='Search User' onChange={(e) => handleSearchUser(e.target.value)} />
+        </div>
         <table>
           <thead>
             <tr>
@@ -44,8 +84,8 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {users &&
-              users.map((user) => (
+            {userPage.content &&
+              userPage.content.map((user) => (
                 <tr key={user.id}>
                   <td scope="row">{user.id}</td>
                   <td>{user.name}</td>
@@ -57,6 +97,10 @@ const UserList = () => {
               ))}
           </tbody>
         </table>
+        <div className="page-control">
+          { userPage.page > 1 ? <img src={LefttArrow} onClick={handlePreviusPage} alt="previusPage" /> : <div></div>}
+          { userPage.nextPage && <img src={RightArrow} onClick={handleNextPage} alt="nextPage" />}
+        </div>
       </div>
     </div>
   );
