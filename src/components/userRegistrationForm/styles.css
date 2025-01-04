@@ -16,13 +16,13 @@
   }
 }
 
-.error{
+.error {
   color: red;
   margin: 0 0 0 1rem;
 }
 
-.input-controler{
-  padding: .5rem;
+.input-controler {
+  padding: 0.5rem;
   margin: 1rem;
   width: 100%;
   display: flex;
@@ -30,25 +30,25 @@
   gap: 1.2rem;
   align-items: start;
 
-  input{
+  input {
     width: 100%;
     color: white;
     padding: 1.5rem 2rem;
     border: none;
     border-radius: 1rem;
     background-color: #1e161651;
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
 }
 
-.row{
+.row {
   display: flex;
   width: 100%;
 }
 
-.user-form{
+.user-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,16 +57,16 @@
   width: 100%;
   color: white;
 
-  button{
+  button {
     align-self: center;
-    background-color: #048C7F;
+    background-color: #048c7f;
     padding: 1rem 2rem;
     width: 50%;
     border: none;
     color: white;
     border-radius: 1rem;
     justify-self: center;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
