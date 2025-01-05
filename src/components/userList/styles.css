@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 35%;
   h2 {
     font-size: 2.5rem;
     color: white;
@@ -76,20 +76,22 @@ td:nth-child(5) {
   border-right: 1px solid #333;
 }
 
-.page-control {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  img {
-    width: 40px;
-    height: 40px;
-    &:hover {
-      transform: scale(1.2);
-      cursor: pointer;
-    }
+tfoot{
+  background-color: #28282820;
+  color: #fff;
+  td{
+    padding: 1rem;
+    background-color: #28282820;
+  }
+  td:first-child{
+    background-color: #28282820;
   }
 }
 
+.img-disabled{
+  opacity: 0.5;
+  pointer-events: none;
+}
 .edit-button{
   background-color: #048C7F;
   padding: .3rem;
@@ -101,18 +103,24 @@ td:nth-child(5) {
   padding: .3rem;
   border-radius: .5rem;
 }
-.modal{
-  position: absolute;
-  color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 40rem;
+
+.modal .ant-modal-content {
   background-color: #121212;
-  border: .2rem solid #000;
-  box-shadow: 24;
-  padding: 1rem;
-  border-radius: 1rem;
+  span{
+    font-weight: bold;
+  }
+  color: white;
+}
+
+.modal .ant-modal-header {
+  background-color: #121212;
+  .ant-modal-title{
+    color: white;
+  }
+}
+
+.modal .ant-modal-footer {
+  background-color: #121212;
 }
 
 .button-modal{
@@ -125,4 +133,50 @@ td:nth-child(5) {
 .user-info-modal{
   font-size: 1.2rem;
   margin-top: 1rem;
+}
+
+.custom-pagination .ant-pagination-item,
+.custom-pagination .ant-pagination-prev,
+.custom-pagination .ant-pagination-next {
+  background-color: white;
+  color: white;
+  border: 1px solid #121212;
+}
+
+.custom-pagination .ant-pagination-prev,
+.custom-pagination .ant-pagination-next {
+  border: none;
+  background-color: transparent;
+}
+
+.custom-pagination .ant-pagination-prev .ant-pagination-item-link,
+.custom-pagination .ant-pagination-next .ant-pagination-item-link {
+  color: white;
+}
+
+.custom-pagination .ant-pagination-item:hover {
+  background-color: #1f1f1f;
+}
+
+.custom-pagination .ant-pagination-item-active {
+  border-color: #048c7f;
+  color: #048c7f;
+  background-color: #1f1f1f;
+  a{
+    color: #048c7f;
+  }
+}
+
+.custom-pagination .ant-pagination-item:focus {
+  outline: none;
+  border-color: #048c7f;
+  color: #048c7f;
+  background-color: #1f1f1f;
+}
+
+.custom-pagination .ant-pagination-item:focus-visible {
+  outline: none;
+  border-color: #048c7f;
+  color: #048c7f;
+  background-color: #1f1f1f;
 }

@@ -1,60 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 
-import { deleteUser, getAllUsers, getUserByName } from '../../services/userService.ts';
+import { deleteUser, getAllUsers, getNumbersOfUsers, getUserByName } from '../../services/userService.ts';
 import { Adress, UserType } from '../../types/user.ts';
-import RightArrow from '../../assets/svg/arrow-right-short.svg';
-import LefttArrow from '../../assets/svg/arrow-left-short.svg';
 import { Page } from '../../interfaces/page.ts';
 import removeIcon from "../../assets/svg/remove.svg"
 import editIcon from "../../assets/svg/edit.svg"
 import { UserListProps } from "../../interfaces/userListProps.ts"
-
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-
+import { Modal, Pagination } from 'antd';
 
 const UserList = ({onUserSelect}: UserListProps) => {
   const [userPage, setUserPage] = useState<Page>({} as Page);
   const [page, setPage] = useState<number>(1);
-  const [open, setOpen] = useState(false)
+  const [numberOfUsers, setNumberOfUsers] = useState(0)
   const [selectUser, setSelectUser] = useState<UserType>({} as UserType)
 
-  const handleOpen = (user: UserType) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = (user: UserType) => {
     setSelectUser(user)
-    setOpen(true);
+    setIsModalOpen(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    handleDeleteUser(selectUser.id || 0)
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   const getData = async (page: number) => {
     const data = await getAllUsers(page);
     if (data.length === 0) {
       return setUserPage({
-        ...userPage,
+        content: [],
+        length: 0,
+        page: page,
         nextPage: false,
       });
     }
     setUserPage({
-      ...userPage,
       content: data,
       length: data.length,
       page: page,
       nextPage: true,
     });
   };
-  const handleNextPage = async () => {
-    await getData(page + 1);
+
+  const getNextPage = async (currentPage: number) => {
+    await getData(currentPage);
     setPage((prevState) => prevState + 1);
-    console.log(`nextpage: ${page}`);
   };
 
-  const handlePreviusPage = async () => {
-    await getData(page - 1);
+  const handleChange = (currentPage: number) => {
+    console.log(currentPage)
+    if(currentPage > page){
+      getNextPage(currentPage)
+    }else {
+      getPreviusPage(currentPage)
+    }
+  }
+
+  const getPreviusPage = async (currentPage: number) => {
+    await getData(currentPage);
     setPage((prevState) => prevState - 1);
-    console.log(`previus page: ${page}`);
   };
 
   const handleSearchUser = async (name: string) => {
@@ -64,39 +75,39 @@ const UserList = ({onUserSelect}: UserListProps) => {
       setUserPage({
         ...userPage,
         content: data,
+        length: data.length
       });
     }
   };
 
-  const formatDate = (date: Date) => {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${day}-${month}-${year}`;
-  };
-
   const formatAddress = (address: Adress) => {
-    return `${address.street}, ${address.country}`;
+    return `${address.street}`;
   };
   //TODO: Need to re-render the UserList Component
   const handleEditUser = (userData: UserType): void => {
     onUserSelect(userData)
   }
 
-  const handleDeleteUser = (userId: number) => {
+  const handleDeleteUser = async (userId: number) => {
     try{
-      deleteUser(userId)
-      getData(page)
+      await deleteUser(userId)
+      await getData(page)
     }catch (error) {
       console.error(error)
     }
-    handleClose()
   }
 
   useEffect(() => {
     getData(page);
-  }, []);
+  }, [page]);
+
+  useEffect(() => {
+    const getArraySize = async () => {
+      const length = await getNumbersOfUsers()
+      setNumberOfUsers(length)
+    }
+    getArraySize()
+  }, [])
 
   return (
     <>
@@ -128,43 +139,23 @@ const UserList = ({onUserSelect}: UserListProps) => {
                   <td>{formatAddress(user.address)}</td>
                   <td>
                     <img className='edit-button' src={editIcon} onClick={() => handleEditUser(user)} alt="editButton" />
-                    <img className='remove-button' src={removeIcon} onClick={() => handleOpen(user)} alt="removeButton" />
+                    <img className='remove-button' src={removeIcon} onClick={() => showModal(user)} alt="removeButton" />
                   </td>
                 </tr>
               ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={4}><Pagination className='custom-pagination' align="center" onChange={handleChange} current={page} defaultCurrent={1} pageSize={7} total={numberOfUsers} /></td>
+            </tr>
+          </tfoot>
         </table>
-        <div className="page-control">
-          {userPage.page > 1 ? (
-            <img
-              src={LefttArrow}
-              onClick={handlePreviusPage}
-              alt="previusPage"
-            />
-          ) : (
-            <div></div>
-          )}
-          {userPage.nextPage && (
-            <img src={RightArrow} onClick={handleNextPage} alt="nextPage" />
-          )}
-        </div>
       </div>
     </div>
-    <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description buttons"
-      >
-        <Box className="modal">
-          <h2 id="parent-modal-title">Delete User?</h2>
-          <p className='user-info-modal'>Name: {selectUser.name}</p>
-          <p className='button-modal' id="parent-modal-description">
-            <Button onClick={() => handleDeleteUser(selectUser.id || 0)} color='error' variant='contained'>Delete</Button>
-            <Button variant='contained' onClick={handleClose}>Cancel</Button>
-          </p>
-        </Box>
-      </Modal>
+    <Modal className='modal' title="Delete user?" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p><span>Nome:</span> {selectUser.name}</p>
+        <p><span>Address:</span> {selectUser.address && selectUser?.address.street || ''}</p>
+    </Modal>
     </>
   );
 };

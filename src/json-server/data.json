@@ -57,34 +57,6 @@
       }
     },
     {
-      "id": 8,
-      "name": "Tatiane Souza",
-      "email": "tatiane.souza@example.com",
-      "dof": "1994-09-05T00:00:00.000Z",
-      "zipCode": "22240-003",
-      "address": {
-        "street": "Rua das Laranjeiras",
-        "city": "Rio de Janeiro",
-        "state": "RJ",
-        "postalCode": "22240-003",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 9,
-      "name": "Eduardo Santos",
-      "email": "eduardo.santos@example.com",
-      "dof": "1991-01-13T00:00:00.000Z",
-      "zipCode": "70660-350",
-      "address": {
-        "street": "Avenida W3 Norte",
-        "city": "Brasília",
-        "state": "DF",
-        "postalCode": "70660-350",
-        "country": "Brazil"
-      }
-    },
-    {
       "id": 14,
       "name": "Júlia Pires",
       "email": "julia.pires@example.com",
