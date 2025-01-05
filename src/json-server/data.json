@@ -153,20 +153,6 @@
         "postalCode": "68900-250",
         "country": "Brazil"
       }
-    },
-    {
-      "name": "IBB",
-      "email": "isaq@gmail.com",
-      "dof": "2025-01-03T00:00:00.000Z",
-      "zipCode": "13311215",
-      "address": {
-        "street": "Rua Doutor Manoel Maria Bueno",
-        "city": "Itu",
-        "state": "São Paulo",
-        "postalCode": "178",
-        "country": "Brazil"
-      },
-      "id": 23
     }
   ]
 }

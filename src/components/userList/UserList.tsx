@@ -115,10 +115,7 @@ const UserList = ({onUserSelect}: UserListProps) => {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Date of Birth</th>
               <th scope="col">Address</th>
-              <th scope="col">Zipcode</th>
               <th scope='col'>Actions</th>
             </tr>
           </thead>
@@ -128,10 +125,7 @@ const UserList = ({onUserSelect}: UserListProps) => {
                 <tr key={user.id}>
                   <td scope="row">{user.id}</td>
                   <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{formatDate(new Date(user.dof))}</td>
                   <td>{formatAddress(user.address)}</td>
-                  <td>{user.zipCode}</td>
                   <td>
                     <img className='edit-button' src={editIcon} onClick={() => handleEditUser(user)} alt="editButton" />
                     <img className='remove-button' src={removeIcon} onClick={() => handleOpen(user)} alt="removeButton" />

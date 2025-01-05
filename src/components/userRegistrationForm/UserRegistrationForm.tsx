@@ -219,7 +219,6 @@ const UserRegistrationForm = ({user, setSelectedUser}: UserRegistrationFormProps
           <button type="button" onClick={handleResetForm}>Clean</button>
         </div>
       </form>
-      <DevTool control={control} />
     </div>
   );
 };
