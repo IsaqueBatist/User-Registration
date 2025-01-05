@@ -10,11 +10,19 @@ import { FormValue } from '../../types/form.ts';
 import { addNewUser, updateUser } from '../../services/userService.ts';
 import { UserType } from '../../types/user.ts';
 import {UserRegistrationFormProps} from '../../interfaces/userRegistrationFormProps.ts'
+import {isEmailAvailable} from '../../utils/isEmailAvailable.ts'
 
 const schema = z.object({
-  id: z.number().optional(),
-  name: z.string().nonempty('Name is required'),
-  email: z.string().email('Email format not valid'),
+  id: z.number()
+      .optional(),
+  name: z.string()
+      .nonempty('Name is required'),
+  email: z.string()
+      .email('Email format not valid')
+      .refine(async (value) =>{
+        const isAvailable = await isEmailAvailable(value)
+        return isAvailable
+      }, "Email is alredy registred"),
   dof: z.preprocess(
     (value) => {
       if (typeof value === 'string') {
@@ -43,7 +51,6 @@ const schema = z.object({
 const UserRegistrationForm = ({user, setSelectedUser}: UserRegistrationFormProps ) => {
   const {
     register,
-    control,
     formState: { errors, isValid },
     handleSubmit,
     reset,

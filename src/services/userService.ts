@@ -23,6 +23,12 @@ export const getUserByName = async (
   return data;
 };
 
+export const getUserByEmail = async (email: string): Promise<UserType[]> => {
+  const url = `${baseURL}?email_like=${email}`
+  const data = await axios.get(url).then((res) => res.data)
+  return data
+}
+
 export const addNewUser = async (user: UserType) => {
   const url = `${baseURL}`;
   return axios.post(url, user);
