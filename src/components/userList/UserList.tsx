@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
+
 import { deleteUser, getAllUsers, getUserByName } from '../../services/userService.ts';
 import { Adress, UserType } from '../../types/user.ts';
 import RightArrow from '../../assets/svg/arrow-right-short.svg';
@@ -7,14 +8,26 @@ import LefttArrow from '../../assets/svg/arrow-left-short.svg';
 import { Page } from '../../interfaces/page.ts';
 import removeIcon from "../../assets/svg/remove.svg"
 import editIcon from "../../assets/svg/edit.svg"
+import { UserListProps } from "../../interfaces/userListProps.ts"
 
-interface UserListProps {
-  onUserSelect: (user: UserType) => void,
-}
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+
 
 const UserList = ({onUserSelect}: UserListProps) => {
   const [userPage, setUserPage] = useState<Page>({} as Page);
   const [page, setPage] = useState<number>(1);
+  const [open, setOpen] = useState(false)
+  const [selectUser, setSelectUser] = useState<UserType>({} as UserType)
+
+  const handleOpen = (user: UserType) => {
+    setSelectUser(user)
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getData = async (page: number) => {
     const data = await getAllUsers(page);
@@ -78,6 +91,7 @@ const UserList = ({onUserSelect}: UserListProps) => {
     }catch (error) {
       console.error(error)
     }
+    handleClose()
   }
 
   useEffect(() => {
@@ -85,6 +99,7 @@ const UserList = ({onUserSelect}: UserListProps) => {
   }, []);
 
   return (
+    <>
     <div className="userlist-container">
       <h2>List of Users</h2>
       <div className="list-users">
@@ -119,7 +134,7 @@ const UserList = ({onUserSelect}: UserListProps) => {
                   <td>{user.zipCode}</td>
                   <td>
                     <img className='edit-button' src={editIcon} onClick={() => handleEditUser(user)} alt="editButton" />
-                    <img className='remove-button' src={removeIcon} onClick={() => handleDeleteUser(user.id || 0)} alt="removeButton" />
+                    <img className='remove-button' src={removeIcon} onClick={() => handleOpen(user)} alt="removeButton" />
                   </td>
                 </tr>
               ))}
@@ -141,6 +156,22 @@ const UserList = ({onUserSelect}: UserListProps) => {
         </div>
       </div>
     </div>
+    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description buttons"
+      >
+        <Box className="modal">
+          <h2 id="parent-modal-title">Delete User?</h2>
+          <p className='user-info-modal'>Name: {selectUser.name}</p>
+          <p className='button-modal' id="parent-modal-description">
+            <Button onClick={() => handleDeleteUser(selectUser.id || 0)} color='error' variant='contained'>Delete</Button>
+            <Button variant='contained' onClick={handleClose}>Cancel</Button>
+          </p>
+        </Box>
+      </Modal>
+    </>
   );
 };
 

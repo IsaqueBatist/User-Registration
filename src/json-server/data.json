@@ -1,20 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "João Silva",
-      "email": "joao.silva@example.com",
-      "dof": "1990-03-25T00:00:00.000Z",
-      "zipCode": "01311-000",
-      "address": {
-        "street": "Avenida Paulista",
-        "city": "São Paulo",
-        "state": "SP",
-        "postalCode": "01311-000",
-        "country": "Brazil"
-      }
-    },
-    {
       "id": 2,
       "name": "Maria Oliveira",
       "email": "maria.oliveira@example.com",
@@ -25,20 +11,6 @@
         "city": "Rio de Janeiro",
         "state": "RJ",
         "postalCode": "20040-030",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 3,
-      "name": "Carlos Souza",
-      "email": "carlos.souza@example.com",
-      "dof": "1992-12-03T00:00:00.000Z",
-      "zipCode": "30330-560",
-      "address": {
-        "street": "Rua dos Três Irmãos",
-        "city": "Belo Horizonte",
-        "state": "MG",
-        "postalCode": "30330-560",
         "country": "Brazil"
       }
     },
@@ -113,48 +85,6 @@
       }
     },
     {
-      "id": 10,
-      "name": "Carla Lima",
-      "email": "carla.lima@example.com",
-      "dof": "1988-08-30T00:00:00.000Z",
-      "zipCode": "69050440",
-      "address": {
-        "street": "Rua das Palmeiras",
-        "city": "Manaus",
-        "state": "AM",
-        "postalCode": "12",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 11,
-      "name": "Vinícius Rocha",
-      "email": "vinicius.rocha@example.com",
-      "dof": "1997-10-22T00:00:00.000Z",
-      "zipCode": "79002-140",
-      "address": {
-        "street": "Rua Joaquim Murtinho",
-        "city": "Campo Grande",
-        "state": "MS",
-        "postalCode": "79002-140",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 12,
-      "name": "Patrícia Martins",
-      "email": "patricia.martins@example.com",
-      "dof": "1984-12-14T00:00:00.000Z",
-      "zipCode": "66060-210",
-      "address": {
-        "street": "Rua Djalma Batista",
-        "city": "Belém",
-        "state": "PA",
-        "postalCode": "66060-210",
-        "country": "Brazil"
-      }
-    },
-    {
       "id": 14,
       "name": "Júlia Pires",
       "email": "julia.pires@example.com",
@@ -183,20 +113,6 @@
       }
     },
     {
-      "id": 16,
-      "name": "Cláudia Torres",
-      "email": "claudia.torres@example.com",
-      "dof": "1993-08-29T00:00:00.000Z",
-      "zipCode": "95020-420",
-      "address": {
-        "street": "Rua Carlos Gomes",
-        "city": "Caxias do Sul",
-        "state": "RS",
-        "postalCode": "95020-420",
-        "country": "Brazil"
-      }
-    },
-    {
       "id": 17,
       "name": "Gustavo Ribeiro",
       "email": "gustavo.ribeiro@example.com",
@@ -207,20 +123,6 @@
         "city": "São Bernardo do Campo",
         "state": "SP",
         "postalCode": "09720-000",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 18,
-      "name": "Fernanda Silva",
-      "email": "fernanda.silva@example.com",
-      "dof": "1991-05-20T00:00:00.000Z",
-      "zipCode": "26030-000",
-      "address": {
-        "street": "Rua 15 de Novembro",
-        "city": "São João de Meriti",
-        "state": "RJ",
-        "postalCode": "26030-000",
         "country": "Brazil"
       }
     },
@@ -249,34 +151,6 @@
         "city": "Macapá",
         "state": "AP",
         "postalCode": "68900-250",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 21,
-      "name": "isaqueBBBB",
-      "email": "isaque@gmail.com",
-      "dof": "2025-01-10T00:00:00.000Z",
-      "zipCode": "13311215",
-      "address": {
-        "street": "Rua Doutor Manoel Maria Bueno",
-        "city": "Itu",
-        "state": "São Paulo",
-        "postalCode": "",
-        "country": "Brazil"
-      }
-    },
-    {
-      "id": 22,
-      "name": "isaque",
-      "email": "isaque@gmail.com",
-      "dof": "2025-01-10T00:00:00.000Z",
-      "zipCode": "13311-215",
-      "address": {
-        "street": "Rua Doutor Manoel Maria Bueno",
-        "city": "Itu",
-        "state": "São Paulo",
-        "postalCode": "",
         "country": "Brazil"
       }
     },

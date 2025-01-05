@@ -3,14 +3,13 @@ import './styles.css';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-
 import { DevTool } from '@hookform/devtools';
+
 import { getAdress } from '../../services/viaCep.ts';
 import { FormValue } from '../../types/form.ts';
 import { addNewUser, updateUser } from '../../services/userService.ts';
 import { UserType } from '../../types/user.ts';
-
-let renderCounter = 0;
+import {UserRegistrationFormProps} from '../../interfaces/userRegistrationFormProps.ts'
 
 const schema = z.object({
   id: z.number().optional(),
@@ -40,12 +39,8 @@ const schema = z.object({
     country: z.string().nonempty('Country is required'),
   }),
 });
-interface props{
-  user: UserType
-  setSelectedUser: React.Dispatch<React.SetStateAction<UserType>>
-}
 
-const UserRegistrationForm = ({user, setSelectedUser}: props ) => {
+const UserRegistrationForm = ({user, setSelectedUser}: UserRegistrationFormProps ) => {
   const {
     register,
     control,
@@ -89,7 +84,6 @@ const UserRegistrationForm = ({user, setSelectedUser}: props ) => {
       }
     }
   };
-  renderCounter++;
 
   const handleResetForm = () => {
     reset({
@@ -116,7 +110,7 @@ const UserRegistrationForm = ({user, setSelectedUser}: props ) => {
   }, [user])
   return (
     <div className="main-container">
-      <h2>Register User, render: {renderCounter / 2}</h2>
+      <h2>Register User</h2>
       <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <div className="input-controler">
